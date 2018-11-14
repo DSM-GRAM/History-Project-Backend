@@ -47,7 +47,9 @@ class BaseResource(Resource):
 
 
 def router(app):
-    from app.api.image import api
-    app.register_blueprint(api.blueprint)
-
-
+    from app.api import image
+    app.register_blueprint(image.api.blueprint)
+    from app.api import quiz
+    app.register_blueprint(quiz.api.blueprint)
+    from app.api import main
+    app.register_blueprint(main.api.blueprint)
