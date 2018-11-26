@@ -1,4 +1,5 @@
 import os
+import socket
 
 IMAGE_FOLDER_PATH = '../static/images'
 
@@ -6,9 +7,9 @@ IMAGE_FOLDER_PATH = '../static/images'
 class Config:
     SERVICE_NAME = "History-Project"
 
-    HOST = '0.0.0.0'
+    HOST = socket.gethostbyname(socket.gethostname())
     PORT = 80
-    DEBUG = True
+    DEBUG = False
 
     RUN_SETTINGS = {
         'host': HOST,
@@ -23,6 +24,3 @@ class Config:
         'username': os.getenv('MONGO_ID', None),
         'password': os.getenv('MONGO_PW', None)
     }
-
-
-
