@@ -1,6 +1,6 @@
 from random import randint
 
-from flask import Blueprint, request
+from flask import Blueprint, request, abort
 from flask_restful import Api
 
 from app.api import BaseResource
@@ -14,6 +14,10 @@ api = Api(quiz_blueprint)
 class QuizView(BaseResource):
     def get(self):
         quiz_list = QuizModel.objects().all()
+        list_len = len(quiz_list)
+        if not list_len:
+            abort(204)
+
         quiz = quiz_list[randint(0, len(quiz_list) - 1)]
 
         if "O" in quiz.answer or "X" in quiz.answer:
@@ -21,8 +25,7 @@ class QuizView(BaseResource):
 
             return self.unicode_safe_json_dumps({
                 "question": quiz.question,
-                "OXanswer": answer,
-                "WordList": quiz.WordList
+                "OXanswer": answer
             }, 200)
 
         else:
@@ -35,11 +38,11 @@ class QuizView(BaseResource):
 
     # Test
 
-    # def post(self):
-    #     QuizModel(
-    #         question=request.json['question'],
-    #         answer=request.json['answer'],
-    #          WordList=request.json['WordList']
-    #     ).save()
-    #
-    #     return '', 201
+    def post(self):
+        QuizModel(
+            question=request.json['question'],
+            answer=request.json['answer'],
+            WordList=request.json['WordList']
+        ).save()
+
+        return '', 201
