@@ -3,10 +3,10 @@ from mongoengine import *
 
 class ImagePathModel(Document):
     area = StringField()
-    historicalsitename = StringField()
-    historicalsitelocation = StringField()
-    historicalsiteimagepath = StringField()
+    historical_site_name = StringField()
+    historical_site_location = StringField()
+    historical_site_image_path = StringField()
     text = StringField()
-    extratext = StringField()
+    extra_text = StringField()
     explain = StringField()
 
