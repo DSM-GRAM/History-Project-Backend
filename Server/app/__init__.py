@@ -1,4 +1,5 @@
 from flask import Flask
+from flasgger import Swagger
 import mongoengine
 
 from app.api import router
@@ -14,10 +15,9 @@ def create_app(*config_obj):
     for obj in config_obj:
         app_.config.from_object(obj)
 
-    mongoengine.connect(**app_.config["MONGODB_SETTINGS"])
-
     router(app_)
 
-    # Swagger(template=app_.config['SWAGGER_TEMPLATE']).init_app(app_)
+    mongoengine.connect(**app_.config["MONGODB_SETTINGS"])
+    Swagger(template=app_.config['SWAGGER_TEMPLATE']).init_app(app_)
 
     return app_
