@@ -53,3 +53,5 @@ def router(app):
     app.register_blueprint(quiz.api.blueprint)
     from app.api import main
     app.register_blueprint(main.api.blueprint)
+    from app.api import map
+    app.register_blueprint(map.api.blueprint)
