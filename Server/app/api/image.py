@@ -19,5 +19,5 @@ class ImageView(BaseResource):
                                             attachment_filename=f'{image_name}.jpg'))
             return image
         except FileNotFoundError:
-            abort(404)
+            return '', 204
 
