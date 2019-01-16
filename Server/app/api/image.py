@@ -15,7 +15,7 @@ class ImageView(BaseResource):
     @swag_from(IMAGE_GET)
     def get(self, image_name):
         try:
-            image = make_response(send_file(f'{IMAGE_FOLDER_PATH}\\{image_name}.jpg',
+            image = make_response(send_file(f'{IMAGE_FOLDER_PATH}/{image_name}.jpg',
                                             attachment_filename=f'{image_name}.jpg'))
             return image
         except FileNotFoundError:
