@@ -1,7 +1,14 @@
 from mongoengine import *
 
 
-class QuizModel(Document):
+class OXQuizModel(Document):
+    area = StringField()
+    question = StringField()
+    answer = StringField(max_length=1)
+
+
+class MultipleQuizModel(Document):
+    area = StringField()
     question = StringField()
 
     answer = ListField(
