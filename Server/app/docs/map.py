@@ -10,8 +10,10 @@ MAP_GET = {
         '200': {
             'description': '유적지 좌표 정보 조회 성공',
             'examples': {
-                'latitude': 13.57,
-                'longitude': 12.34
+                '': {
+                    'latitude': 13.57,
+                    'longitude': 12.34
+                }
             }
         },
         '204': {
