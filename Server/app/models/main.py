@@ -13,7 +13,7 @@ class HistorySiteModel(Document):
     }
 
     area = StringField()
-    name = StringField(primary_key=True)
+    name = StringField()
 
     image_path = StringField()
     location = StringField()
