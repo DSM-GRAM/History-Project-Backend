@@ -4,7 +4,8 @@ MAP_GET = {
     'tags': ['Map'],
     'description': '구글 지도에서의 유적지 좌표를 보여줍니다.',
     'parameters': [
-        parameter('area', 'bla|usu', 'url')
+        parameter('area', 'bla|usu', 'url'),
+        parameter('site_name', '유적지 이름', 'url')
     ],
     'responses': {
         '200': {
