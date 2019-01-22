@@ -1,4 +1,9 @@
-from flask import Blueprint, request, abort
+import os
+import json
+import urllib.parse
+import urllib.request
+
+from flask import Blueprint
 from flask_restful import Api
 from flasgger import swag_from
 
@@ -10,16 +15,37 @@ map_blueprint = Blueprint(__name__, __name__)
 api = Api(map_blueprint)
 
 
-@api.resource('/map/<area>')
+def _decode_address_to_coordinates(address: str):
+    url_params = {
+        'address': address,
+        'key': os.getenv('GEO_KEY', 'AIzaSyBlE5lmzGC58NH9LwQV0ZgZtC_uVfCjbuo'),
+    }
+
+    url = 'https://maps.googleapis.com/maps/api/geocode/json?' + urllib.parse.urlencode(url_params)
+    response = urllib.request.urlopen(url)
+
+    response_body = response.read()
+    result = json.loads(response_body.decode())
+
+    if 'status' not in result or result['status'] != 'OK':
+        return {}, 204
+
+    else:
+        return {
+            'lat': result['results'][0]['geometry']['location']['lat'],
+            'lng': result['results'][0]['geometry']['location']['lng']
+        }
+
+
+@api.resource('/map/<history_site_code>')
 class MapView(BaseResource):
     @swag_from(MAP_GET)
-    def get(self, area):
-        map = MapModel.objects(name=area).first()
+    def get(self, history_site_code: str):
+        map = MapModel.objects(id=history_site_code).first()
 
         if map is None:
             return '', 204
 
-        return {
-            'latitude': map.latitude,
-            'longitude': map.longitude
-        }, 200
+        return _decode_address_to_coordinates(map.address)
+
+
