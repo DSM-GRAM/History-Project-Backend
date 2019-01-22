@@ -1,5 +1,4 @@
 import os
-import socket
 
 IMAGE_FOLDER_PATH = '../static/images'
 
@@ -7,7 +6,7 @@ IMAGE_FOLDER_PATH = '../static/images'
 class Config:
     SERVICE_NAME = "History-Project"
 
-    HOST = socket.gethostbyname(socket.gethostname())
+    HOST = '0.0.0.0'
     PORT = 80
     DEBUG = False
 

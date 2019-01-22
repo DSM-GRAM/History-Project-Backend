@@ -32,8 +32,8 @@ class LocationView(BaseResource):
 @api.resource('/main/<area>/<history_site_code>')
 class DetailLocationView(BaseResource):
     @swag_from(AREA_GET)
-    def get(self, area, historical_site_code):
-        data = HistorySiteModel.objects(_id=historical_site_code).first()
+    def get(self, area, history_site_code):
+        data = HistorySiteModel.objects(id=history_site_code).first()
 
         if data is None:
             abort(204)
