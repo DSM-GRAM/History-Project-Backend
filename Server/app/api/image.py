@@ -10,14 +10,17 @@ image_blueprint = Blueprint(__name__, __name__)
 api = Api(image_blueprint)
 
 
+def send_image(area, image_name, ext):
+    image = make_response(send_file(f'{IMAGE_FOLDER_PATH}/{area}/{image_name}.{ext}',
+                                    attachment_filename=f'{image_name}.{ext}'))
+    return image
+
+
 @api.resource('/image/<area>/<image_name>')
 class ImageView(BaseResource):
     @swag_from(IMAGE_GET)
     def get(self, area, image_name):
         try:
-            image = make_response(send_file(f'{IMAGE_FOLDER_PATH}/{area}/{image_name}.jpg',
-                                            attachment_filename=f'{image_name}.jpg'))
-            return image
+            return send_image(area, image_name, 'jpg')
         except FileNotFoundError:
-            return '', 204
-
+            return send_image(area, image_name, 'jpeg')
