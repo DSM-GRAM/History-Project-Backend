@@ -33,20 +33,20 @@ class LocationView(BaseResource):
 class DetailLocationView(BaseResource):
     @swag_from(AREA_GET)
     def get(self, area, history_site_code):
-        data = HistorySiteModel.objects(id=history_site_code).first()
+        site = HistorySiteModel.objects(id=history_site_code).first()
 
-        if data is None:
+        if site is None:
             abort(204)
 
         return self.unicode_safe_json_dumps({
-            "imagePath": data.image_path,
-            "location": data.location,
-            "text": data.text,
+            "imagePath": site.image_path,
+            "location": site.location,
+            "text": site.text,
             "extra": [{
                 "extraName": extra.name,
-                "extraImagePath": data.image_path,
-                "extraLocation": data.location
-            } for extra in data.extra],
-            "extraText": data.extra_text,
-            "explain": data.explain
+                "extraImagePath": extra.image_path,
+                "extraLocation": extra.location
+            } for extra in site.extra],
+            "extraText": site.extra_text,
+            "explain": site.explain
         })
