@@ -40,7 +40,7 @@ AREA_GET = {
     'description': '한 장소에 대한 구체적인 데이터 확인',
     'parameters': [
         parameter('area', 'bla|usu', 'url'),
-        parameter('history_site_name', '장소 이름', 'url')
+        parameter('history_site_code', '각 유적지의 코드', 'url')
     ],
     'responses': {
         '200': {

@@ -24,7 +24,7 @@ class LocationView(BaseResource):
                 "historicalSiteName": historic_site.name,
                 "historicalSiteLocation": historic_site.location,
                 "historicalSiteImagePath": historic_site.image_path,
-                "historicalSiteCode": historic_site.id
+                "historicalSiteCode": str(historic_site.id)
             } for historic_site in all_location
         ])
 
