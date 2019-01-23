@@ -7,5 +7,4 @@ class MapModel(Document):
     }
 
     name = StringField()
-    latitude = FloatField()
-    longitude = FloatField()
+    address = StringField()
