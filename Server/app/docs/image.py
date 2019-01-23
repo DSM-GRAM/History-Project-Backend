@@ -4,6 +4,7 @@ IMAGE_GET = {
     'tags': ['Image'],
     'description': '이미지 조회',
     'parameters': [
+        parameter('area', '지역 이름', in_='url'),
         parameter('image_name', '사진 이름', in_='url')
     ],
     'responses': {

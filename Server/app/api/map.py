@@ -8,7 +8,7 @@ from flask_restful import Api
 from flasgger import swag_from
 
 from app.api import BaseResource
-from app.models.map import MapModel
+from app.models.main import HistorySiteModel
 from app.docs.map import MAP_GET
 
 map_blueprint = Blueprint(__name__, __name__)
@@ -41,7 +41,7 @@ def _decode_address_to_coordinates(address: str):
 class MapView(BaseResource):
     @swag_from(MAP_GET)
     def get(self, history_site_code: str):
-        map = MapModel.objects(id=history_site_code).first()
+        map = HistorySiteModel.objects(id=history_site_code).first()
 
         if map is None:
             return '', 204
