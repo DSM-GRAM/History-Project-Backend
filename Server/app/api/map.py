@@ -18,7 +18,7 @@ api = Api(map_blueprint)
 def _decode_address_to_coordinates(address: str):
     url_params = {
         'address': address,
-        'key': os.getenv('GEO_KEY', 'AIzaSyBlE5lmzGC58NH9LwQV0ZgZtC_uVfCjbuo'),
+        'key': os.getenv('GEO_KEY')
     }
 
     url = 'https://maps.googleapis.com/maps/api/geocode/json?' + urllib.parse.urlencode(url_params)
