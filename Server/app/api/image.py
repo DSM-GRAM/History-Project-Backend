@@ -11,9 +11,8 @@ api = Api(image_blueprint)
 
 
 def send_image(area, image_name, ext):
-    image = make_response(send_file(f'{IMAGE_FOLDER_PATH}/{area}/{image_name}.{ext}',
-                                    attachment_filename=f'{image_name}.{ext}'))
-    return image
+    return send_file(f'{IMAGE_FOLDER_PATH}/{area}/{image_name}.{ext}',
+                     attachment_filename=f'{image_name}.{ext}')
 
 
 @api.resource('/image/<area>/<image_name>')
