@@ -1,26 +1,30 @@
 from mongoengine import *
 
 
-class OXQuizModel(Document):
-    meta = {
-        'collection': 'ox_quiz'
-    }
-    area = StringField()
-    question = StringField()
-    answer = StringField(max_length=1)
-
-
-class MultipleQuizModel(Document):
-    meta = {
-        'collection': 'multiple_quiz'
-    }
-    area = StringField()
-    question = StringField()
-
-    answer = ListField(
-        StringField()
+class QuizModel(Document):
+    ox_question = ListField(
+        StringField(),
+        null=True
     )
 
-    WordList = ListField(
-        StringField()
+    multiple_question = ListField(
+        StringField(),
+        null=True
+    )
+
+    ox_answer = ListField(
+        StringField(1),
+        null=True
+    )
+
+    multiple_answer = ListField(
+        StringField(),
+        null=True
+    )
+
+    word_list = ListField(
+        ListField(
+            StringField()
+        ),
+        null=True
     )
