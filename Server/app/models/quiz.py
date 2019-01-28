@@ -13,8 +13,10 @@ class QuizModel(Document):
     )
 
     ox_answer = ListField(
-        StringField(1),
-        null=True
+        StringField(
+            max_length=1
+        ),
+        nugill=True
     )
 
     multiple_answer = ListField(
