@@ -4,7 +4,7 @@ QUIZ_GET = {
     'tags': ['Quiz'],
     'description': '유적지에 해당하는 퀴즈 정보륿 불러옵니다.',
     'parameters': [
-        parameter('area', '유적지 이름', 'url')
+        parameter('history_site_code', '각 유적지의 코드', 'url')
     ],
     'responses': {
         '200': {
