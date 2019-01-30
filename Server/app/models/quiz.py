@@ -16,7 +16,7 @@ class QuizModel(Document):
         StringField(
             max_length=1
         ),
-        nugill=True
+        null=True
     )
 
     multiple_answer = ListField(
