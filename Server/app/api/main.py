@@ -36,7 +36,7 @@ class DetailLocationView(BaseResource):
         site = HistorySiteModel.objects(id=history_site_code).first()
 
         if site is None:
-            abort(204)
+            return '', 204
 
         return self.unicode_safe_json_dumps({
             "imagePath": site.image_path,
