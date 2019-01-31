@@ -14,12 +14,13 @@ api = Api(quiz_blueprint)
 class OXQuizView(BaseResource):
     @swag_from(QUIZ_GET)
     def get(self, history_site_code):
-        quiz = QuizModel.objects(id=history_site_code).first()
+        quiz = QuizModel.objects(site_code=history_site_code).first()
 
         return self.unicode_safe_json_dumps({
             'oxQuestion': quiz.ox_question,
             'multipleQuestion': quiz.multiple_question,
             'oxAnswer': quiz.ox_answer,
             'multipleAnswer': quiz.multiple_answer,
+            'numberOfAnswer': quiz.number_of_answer,
             'wordList': quiz.word_list
         })

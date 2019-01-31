@@ -1,7 +1,11 @@
+from app.models.main import HistorySiteModel
+
 from mongoengine import *
 
 
 class QuizModel(Document):
+    site_code = StringField()
+
     ox_question = ListField(
         StringField(),
         null=True
@@ -21,6 +25,11 @@ class QuizModel(Document):
 
     multiple_answer = ListField(
         StringField(),
+        null=True
+    )
+
+    number_of_answer = ListField(
+        IntField(),
         null=True
     )
 
