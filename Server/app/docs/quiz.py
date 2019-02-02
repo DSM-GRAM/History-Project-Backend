@@ -15,6 +15,7 @@ QUIZ_GET = {
                     "questionMultiple": ['어디 치킨 먹을까'],
                     "answerOX": ['O'],
                     "answerMultiple": ['교촌', '~'],
+                    'wordOfNumber': [3, 4],
                     "wordList": [['교촌', 'bbq', '굽네']]
                 }
             }

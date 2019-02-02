@@ -28,11 +28,6 @@ class QuizModel(Document):
         null=True
     )
 
-    number_of_answer = ListField(
-        IntField(),
-        null=True
-    )
-
     word_list = ListField(
         ListField(
             StringField()
