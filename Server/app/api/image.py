@@ -24,12 +24,12 @@ class ImageView(BaseResource):
         except FileNotFoundError:
             return send_image(area, image_name, 'jpeg')
 
-
-@api.resource('/vr/image/{history_site_code}')
-class VRImageView(BaseResource):
-    @swag_from(VR_IMAGE_GET)
-    def get(self, history_site_code):
-        try:
-            return send_image('vr', history_site_code, 'jpg')
-        except FileNotFoundError:
-            return '', 204
+#
+# @api.resource('/vr/image/{history_site_code}')
+# class VRImageView(BaseResource):
+#     @swag_from(VR_IMAGE_GET)
+#     def get(self, history_site_code):
+#         try:
+#             return send_image('vr', history_site_code, 'jpg')
+#         except FileNotFoundError:
+#             return '', 204
