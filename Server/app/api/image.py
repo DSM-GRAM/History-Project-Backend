@@ -25,7 +25,7 @@ class ImageView(BaseResource):
             return send_image(area, image_name, 'jpeg')
 
 
-@api.resource('/image/vr/{history_site_code}')
+@api.resource('/vr/image/{history_site_code}')
 class VRImageView(BaseResource):
     @swag_from(VR_IMAGE_GET)
     def get(self, history_site_code):
