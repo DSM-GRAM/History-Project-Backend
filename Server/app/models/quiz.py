@@ -4,6 +4,10 @@ from mongoengine import *
 
 
 class QuizModel(Document):
+    meta = {
+        'collection': 'quiz'
+    }
+
     site_code = StringField()
 
     ox_question = ListField(

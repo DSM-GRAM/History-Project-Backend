@@ -1,9 +1,9 @@
-from flask import send_file, Blueprint, make_response
+from flask import send_file, Blueprint
 from flasgger import swag_from
 from flask_restful import Api
 
 from app.api import BaseResource
-from app.docs.image import IMAGE_GET
+from app.docs.image import IMAGE_GET, VR_IMAGE_GET
 from config import IMAGE_FOLDER_PATH
 
 image_blueprint = Blueprint(__name__, __name__)
@@ -23,3 +23,13 @@ class ImageView(BaseResource):
             return send_image(area, image_name, 'jpg')
         except FileNotFoundError:
             return send_image(area, image_name, 'jpeg')
+
+
+@api.resource('/image/vr/{history_site_code}')
+class VRImageView(BaseResource):
+    @swag_from(VR_IMAGE_GET)
+    def get(self, history_site_code):
+        try:
+            return send_image('vr', history_site_code, 'jpg')
+        except FileNotFoundError:
+            return '', 204
