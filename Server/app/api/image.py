@@ -39,5 +39,5 @@ class ImageView(BaseResource):
 class VRImageUrlView(BaseResource):
     def get(self, site_code):
         return {
-            'url': f'http://52.199.207.14/image/vr/{site_code}'
+            'imagePath': f'http://52.199.207.14/image/vr/{site_code}'
         }
