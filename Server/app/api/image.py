@@ -35,10 +35,9 @@ class ImageView(BaseResource):
 #             return '', 204
 
 
-@api.resource('/vr/image')
+@api.resource('/vr/image/<site_code>')
 class VRImageUrlView(BaseResource):
-    def get(self):
-        return self.unicode_safe_json_dumps({
-            '신한촌': 'http://52.199.207.14/image/vr/5c526b5e002c925de76b070b',
-            '최재형 생가': 'http://52.199.207.14/image/vr/5c526c28002c925de76b070f'
-        })
+    def get(self, site_code):
+        return {
+            'url': f'http://52.199.207.14/image/vr/{site_code}'
+        }
