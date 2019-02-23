@@ -33,3 +33,12 @@ class ImageView(BaseResource):
 #             return send_image('vr', history_site_code, 'jpg')
 #         except FileNotFoundError:
 #             return '', 204
+
+
+@api.resource('/vr/image')
+class VRImageUrlView(BaseResource):
+    def get(self):
+        return self.unicode_safe_json_dumps({
+            '신한촌': 'http://52.199.207.14/image/vr/5c526b5e002c925de76b070b',
+            '최재형 생가': 'http://52.199.207.14/image/vr/5c526c28002c925de76b070f'
+        })
