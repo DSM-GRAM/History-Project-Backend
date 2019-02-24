@@ -3,6 +3,7 @@ from flasgger import swag_from
 from flask_restful import Api
 
 from app.api import BaseResource
+from app.models.main import HistorySiteModel
 from app.docs.image import IMAGE_GET, VR_IMAGE_GET
 from config import IMAGE_FOLDER_PATH
 
@@ -38,6 +39,8 @@ class ImageView(BaseResource):
 @api.resource('/vr/image/<site_code>')
 class VRImageUrlView(BaseResource):
     def get(self, site_code):
+        if not HistorySiteModel.objects(id=site_code).first():
+            return '', 205
         return {
             'imagePath': f'http://52.199.207.14/image/vr/{site_code}'
         }
