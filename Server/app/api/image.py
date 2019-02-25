@@ -2,6 +2,7 @@ from flask import send_file, Blueprint
 from flasgger import swag_from
 from flask_restful import Api
 import mongoengine
+import os
 
 from app.api import BaseResource
 from app.models.main import HistorySiteModel
@@ -42,10 +43,12 @@ class VRImageUrlView(BaseResource):
     def get(self, site_code):
         try:
             site = HistorySiteModel.objects(id=site_code).first()
-        except mongoengine.errors.ValidationError:
-            return '', 204
+            if site is None:
+                return '', 204
+            if not os.path.isfile(IMAGE_FOLDER_PATH + f'/vr/{site_code}.jpg'):
+                return '', 204
 
-        if site is None:
+        except mongoengine.errors.ValidationError:
             return '', 204
 
         return {
