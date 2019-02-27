@@ -42,9 +42,6 @@ class ImageView(BaseResource):
 class VRImageUrlView(BaseResource):
     def get(self, site_code):
         try:
-            site = HistorySiteModel.objects(id=site_code).first()
-            if site is None:
-                return '', 204
             if not os.path.isfile(IMAGE_FOLDER_PATH + f'/vr/{site_code}.JPG'):
                 return '', 204
 
