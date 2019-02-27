@@ -42,7 +42,7 @@ class ImageView(BaseResource):
 class VRImageUrlView(BaseResource):
     def get(self, site_code):
         try:
-            if not os.path.isfile(IMAGE_FOLDER_PATH + f'/vr/{site_code}.JPG'):
+            if not os.path.isfile(IMAGE_FOLDER_PATH + f'/vr/{site_code}.jpg'):
                 return '', 204
 
         except mongoengine.errors.ValidationError:
