@@ -1,6 +1,6 @@
 import os
 
-IMAGE_FOLDER_PATH = '../static/images'
+IMAGE_FOLDER_PATH = os.path.abspath(__file__ + "/../../") + '/static/images'
 
 
 class Config:
